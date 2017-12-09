@@ -35,7 +35,7 @@ class LoginForm extends Model
         ];
     }
 
-    public function attributeLabels(){ // позволяет задать название полей формы
+    public function attributeLabels(){ 
         return [
             'username' =>'Логин',
             'password' =>'Пароль',
@@ -53,11 +53,11 @@ class LoginForm extends Model
      */
     public function validatePassword($attribute, $params)
     {
-        if (!$this->hasErrors()) { // поверяем наличие ошибок
-            $user = $this->getUser(); // если ошибок нет то вызываем метод getUser()
+        if (!$this->hasErrors()) { 
+            $user = $this->getUser(); ser()
 
-            if (!$user || !$user->validatePassword($this->password)) { // если обьект user не создан или правила валидации не пройдены
-                $this->addError($attribute, 'Логин/пароль введены не верно'); // выводим текст ошибки
+            if (!$user || !$user->validatePassword($this->password)) { 
+                $this->addError($attribute, 'Логин/пароль введены не верно');
             }
         }
     }
@@ -68,13 +68,13 @@ class LoginForm extends Model
      */
     public function login()
     {
-        if ($this->validate()) { // если валидация прошла успешно
+        if ($this->validate()) { 
             if($this->rememberMe) {
-                $u = $this->getUser(); // сгененируем случайную строку и записываем ее в переменую
-                $u->generateAuthKey(); // обновляем
-                $u->save(); // сохраняем
+                $u = $this->getUser(); 
+                $u->generateAuthKey(); 
+                $u->save();
             }
-            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0); // то авторизовываем пользователя и записываем ему куку если опция выбрана
+            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
         }
         return false;
     }
@@ -86,10 +86,10 @@ class LoginForm extends Model
      */
     public function getUser() //
     {
-        if ($this->_user === false) { // проверяет найден ли пользователь
-            $this->_user = User::findByUsername($this->username); // ишим пользователя если он не найден
+        if ($this->_user === false) { 
+            $this->_user = User::findByUsername($this->username); 
         }
 
-        return $this->_user; // возвращаем пользователя или false
+        return $this->_user; 
     }
 }

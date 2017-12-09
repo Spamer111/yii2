@@ -7,13 +7,13 @@
  */
 
 namespace app\models;
-use yii\db\ActiveRecord; // Класс для рыботы с БД
+use yii\db\ActiveRecord; 
 
 
 class Category extends ActiveRecord{
 
 
-    public function behaviors() // поведение для загрузки картинок
+    public function behaviors()
     {
         return [
             'image' => [
@@ -22,13 +22,12 @@ class Category extends ActiveRecord{
         ];
     }
 
-    public static function tableName(){ //Метод указывает с какой таблицея связана данная модель
-        return 'category'; //Данная модель связана с таблицей category
+    public static function tableName(){ 
+        return 'category'; 
     }
 
-    public function getProducts(){ // связь между таблицами category и product
-        return $this->hasMany(Product::className(),['category_id' => 'id']); //С таблице Product поле category_id сзязано
-        //с полем id таблицы  category 
+    public function getProducts(){ 
+        return $this->hasMany(Product::className(),['category_id' => 'id']); 
     }
 
 }

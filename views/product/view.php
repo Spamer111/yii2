@@ -10,7 +10,7 @@ use yii\helpers\Url;
 
 <div class="main">
 
-    <?php  $mainImg = $product->getImage(); //получаем главную картинку ?>
+    <?php  $mainImg = $product->getImage();  ?>
 
 
 
@@ -18,18 +18,18 @@ use yii\helpers\Url;
 
     <!-- Карусель -->
     <div id="myCarousel" class="carousel slide" data-interval="3000" data-ride="carousel">
-        <!-- Индикаторы для карусели -->
+        
         <ol class="carousel-indicators">
-            <!-- Перейти к 0 слайду карусели с помощью соответствующего индекса data-slide-to="0" -->
+           
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <!-- Перейти к 1 слайду карусели с помощью соответствующего индекса data-slide-to="1" -->
+          
             <li data-target="#myCarousel" data-slide-to="1"></li>
-            <!-- Перейти к 2 слайду карусели с помощью соответствующего индекса data-slide-to="2" -->
+           
             <li data-target="#myCarousel" data-slide-to="2"></li>
         </ol>
-        <!-- Слайды карусели -->
+      
         <div class="carousel-inner">
-            <!-- Слайды создаются с помощью контейнера с классом item, внутри которого помещается содержимое слайда -->
+           
             <div class="active item">
                 <h2>Слайд №1</h2>
                 <img src="/web/images/latest-product-img1.jpg" alt="" />
@@ -38,7 +38,7 @@ use yii\helpers\Url;
                     <p>Текст (описание) 1 слайда...</p>
                 </div>
             </div>
-            <!-- Слайд №2 -->
+           
             <div class="item">
                 <h2>Slide 2</h2>
                 <div class="carousel-caption">
@@ -46,7 +46,7 @@ use yii\helpers\Url;
                     <p>Aliquam sit amet gravida nibh, facilisis gravida odio.</p>
                 </div>
             </div>
-            <!-- Слайд №3 -->
+          
             <div class="item">
                 <h2>Slide 3</h2>
                 <div class="carousel-caption">
@@ -55,12 +55,11 @@ use yii\helpers\Url;
                 </div>
             </div>
         </div>
-        <!-- Навигация для карусели -->
-        <!-- Кнопка, осуществляющая переход на предыдущий слайд с помощью атрибута data-slide="prev" -->
+       
         <a class="carousel-control left" href="#myCarousel" data-slide="prev">
             <span class="glyphicon glyphicon-chevron-left"></span>
         </a>
-        <!-- Кнопка, осуществляющая переход на следующий слайд с помощью атрибута data-slide="next" -->
+       
         <a class="carousel-control right" href="#myCarousel" data-slide="next">
             <span class="glyphicon glyphicon-chevron-right"></span>
         </a>
@@ -84,21 +83,15 @@ use yii\helpers\Url;
                             <ul id="etalage">
                                 <li>
                                     <a href="optionallink.html">
-                                        <?php  $mainImg = $product->getImage(); //получаем главную картинку ?>
-                                        <?php  $mainGlr = $product->getImages(); //получаем галерею картинок ?>
+                                        <?php  $mainImg = $product->getImage();  ?>
+                                        <?php  $mainGlr = $product->getImages();  ?>
 
                                         <?php echo Html::img($mainImg->getUrl('300x'), ['alt' => $product->name,'class' => 'etalage_thumb_image'])?>
                                     </a>
                                 </li>
                                 <li>
                                     
-                                    <?php
-                                    /*
-                                        foreach($mainGlr as $img){
-                                            echo Html::img($img->getUrl('300x'), ['alt' => $product->name,'class' => 'etalage_thumb_image']);
-                                        }
-*/
-                                    ?>
+                                   
                                 </li>
 
                             </ul>

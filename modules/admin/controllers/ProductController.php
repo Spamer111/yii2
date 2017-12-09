@@ -67,7 +67,7 @@ class ProductController extends Controller
         $model = new Product();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success', "Товар {$model->name} добавлен"); // вывод сообщения на Flash
+            Yii::$app->session->setFlash('success', "Товар {$model->name} добавлен"); 
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -92,10 +92,10 @@ class ProductController extends Controller
                 $model->upload();
             }
             unset($model->image);
-            $model->gallery = UploadedFile::getInstances($model, 'gallery'); // получаем все картинки
-            $model->uploadGallery(); // вызываем метод гагрузки картинок
+            $model->gallery = UploadedFile::getInstances($model, 'gallery'); 
+            $model->uploadGallery(); 
             
-            Yii::$app->session->setFlash('success', "Товар {$model->name} обнавлен"); // вывод сообщения на Flash
+            Yii::$app->session->setFlash('success', "Товар {$model->name} обнавлен"); 
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [

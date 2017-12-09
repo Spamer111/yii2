@@ -70,12 +70,12 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
-        if (!Yii::$app->user->isGuest) { // проверяет неявляеться ли пользователь гостем, если возвращает false то пользователь авторизован
-            return $this->goHome(); // отправляем  на главную страницу
+        if (!Yii::$app->user->isGuest) { 
+            return $this->goHome(); 
         }
 
-        $model = new LoginForm(); // создаем обьект класса
-        if ($model->load(Yii::$app->request->post()) && $model->login()) { // загружаем данные  и вызывыаем метод login() который авторизует пользователя
+        $model = new LoginForm(); 
+        if ($model->load(Yii::$app->request->post()) && $model->login()) { 
             return $this->goBack();
         }
         return $this->render('login', [

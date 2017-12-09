@@ -15,15 +15,10 @@ class ComentController extends AppController{
 
     public function actionView()
     {
-       // $model = new Coment(); // создаем обьект класса комент - обьект класса
-       // Записываем данные по полям в БД
-       // $model->name = 'Имя пользователя3'; // Присваиваем данные полю name таблицы coment
-       // $model->email = 'sdfsd@maol.ru';
-       // $model->coment = 'sdfsd 85885';
-       // $model->save(); //вызываем метод save который записывает данные в таблицу
+      
 
-        $data = Coment::find()->asArray()->all(); // получаем все данные из таблицы Coment бд - массив обьектов класса Coment
-       // $data->delete(); // удаление выбранной строки
+        $data = Coment::find()->asArray()->all(); 
+       // $data->delete(); 
 
         $test = $this->add();
         return $this->render('view', compact('data','test'));
@@ -31,8 +26,8 @@ class ComentController extends AppController{
 
 
     public function add(){
-        $model = new Coment(); // создаем обьект класса комент - обьект класса
-         $model->name = 'User name'; // Присваиваем данные полю name таблицы coment
+        $model = new Coment(); 
+         $model->name = 'User name'; 
          $model->email = 'mail@mail.ru';
          $model->coment = 'Это пиздец!';
         return $model;

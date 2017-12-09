@@ -7,7 +7,7 @@ use yii\widgets\ActiveForm;
 <div class="container">
 <!-- Вывод флеш сообщений-->
     <!-- Вывод флеш сообщения при удачном заказе-->
-        <?php if (Yii::$app->session->hasFlash('success')): // пореряем если есть метод hasFlash с ключем success, то выводим с одним оформлением?>
+        <?php if (Yii::$app->session->hasFlash('success')): ?>
             <div class="alert alert-success alert-dismissable" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true"></span>
@@ -16,7 +16,7 @@ use yii\widgets\ActiveForm;
             </div>
         <?php endif;?>
     <!-- Вывод флеш сообщения при неудачном заказе-->
-        <?php if (Yii::$app->session->hasFlash('error')): // пореряем если есть метод hasFlash с ключем error, то выводим с другим оформлением?>?>
+        <?php if (Yii::$app->session->hasFlash('error')): ?>?>
             <div class="alert alert-danger alert-dismissable" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true"></span>

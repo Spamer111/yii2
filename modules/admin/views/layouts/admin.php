@@ -49,8 +49,8 @@ ltAppAsset::register($this);
             <h3>Категории</h3>
             <div id="jquery-accordion-menu" class="jquery-accordion-menu white">
                 <ul id="demo-list">
-                    <?php echo \app\components\MenuWidget::widget(['tpl' => 'menu']); //вывод виджета, tpl - параметр который определяет
-            // какой вид виджета мы выводим?>
+                    <?php echo \app\components\MenuWidget::widget(['tpl' => 'menu']); 
+            ?>
                 </ul>
             </div>
         -->
@@ -120,7 +120,7 @@ ltAppAsset::register($this);
 <div class="container">.
 
     <!-- Вывод флеш сообщения при удачном заказе-->
-    <?php if (Yii::$app->session->hasFlash('success')): // пореряем если есть метод hasFlash с ключем success, то выводим с одним оформлением?>
+    <?php if (Yii::$app->session->hasFlash('success')): ?>
         <div class="alert alert-success alert-dismissable" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true"></span>
@@ -129,7 +129,7 @@ ltAppAsset::register($this);
         </div>
     <?php endif;?>
     <!-- Вывод флеш сообщения при неудачном заказе-->
-    <?php if (Yii::$app->session->hasFlash('error')): // пореряем если есть метод hasFlash с ключем error, то выводим с другим оформлением?>?>
+    <?php if (Yii::$app->session->hasFlash('error')): ?>?>
         <div class="alert alert-danger alert-dismissable" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true"></span>
@@ -140,7 +140,7 @@ ltAppAsset::register($this);
     <!-- Конец вывода флеш сообшений-->
 
 <?php
-//Выводим контент который распологаеться по адресу views/...
+
 echo $content;
 ?>
     </div>

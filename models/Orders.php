@@ -39,13 +39,13 @@ class Orders extends ActiveRecord
     public function behaviors(){
         return [
             [
-                'class' => TimestampBehavior::className(), // объявляем класс
-                'attributes' => [ // указываем атрибуты
-                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'], //событие EVENT_BEFORE_INSERT - перед вставкой новой записи заполняет поля меткой времени UNIX
-                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'], //событие EVENT_BEFORE_INSERT - перед обновлением записи заполняет поле меткой времени UNIX
+                'class' => TimestampBehavior::className(), 
+                'attributes' => [ 
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'], 
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'], 
                 ],
-                // если вместо метки времени UNIX используется datetime:
-                 'value' => new Expression('NOW()'), // перевод метки времени из UNIX в понятный нам формат
+               
+                 'value' => new Expression('NOW()'), 
             ],
         ];
     }
@@ -53,25 +53,25 @@ class Orders extends ActiveRecord
     /**
      * @inheritdoc
      */
-    public function rules() // Правила для валидации
+    public function rules() 
     {
         return [
-            [['name', 'email', 'phone', 'address'], 'required'], // обязательные поля
+            [['name', 'email', 'phone', 'address'], 'required'], 
             [['created_at', 'update_at'], 'safe'],
-            [['qty'], 'integer'], // целое число
-            [['sum'], 'number'], // просто число
+            [['qty'], 'integer'], 
+            [['sum'], 'number'], 
             [['status'], 'boolean'], //
-            [['name', 'email', 'phone', 'address'], 'string', 'max' => 255], // строка, максимум 255 символов
+            [['name', 'email', 'phone', 'address'], 'string', 'max' => 255], 
         ];
     }
 
     /**
      * @inheritdoc
      */
-    public function attributeLabels() // Поля для формы как будут называться
+    public function attributeLabels() 
     {
         return [
-            'name' => 'Имя', //лево как поле называеться в БД - право как будет называться в форме
+            'name' => 'Имя', 
             'email' => 'Email',
             'phone' => 'Телефон',
             'address' => 'Адрес',

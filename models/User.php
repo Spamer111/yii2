@@ -14,13 +14,13 @@ class User extends ActiveRecord  implements \yii\web\IdentityInterface
      * @inheritdoc
      */
     public static function findIdentity($id){
-        return static::findOne($id); // возвращает пользователя из бд по его id
+        return static::findOne($id); 
     }
 
     /**
      * @inheritdoc
      */
-    public static function findIdentityByAccessToken($token, $type = null) { // обязаны обьявить но репализация в данном случае не нужна
+    public static function findIdentityByAccessToken($token, $type = null) { 
 
     }
 
@@ -30,15 +30,15 @@ class User extends ActiveRecord  implements \yii\web\IdentityInterface
      * @param string $username
      * @return static|null
      */
-    public static function findByUsername($username) // поиск пользователя нужного
+    public static function findByUsername($username) 
     {
-        return static::findOne(['username' => $username]); // возыращает пользователя у которого в бд username = $username(то что польщователь ввел через форму)
+        return static::findOne(['username' => $username]); 
     }
 
     /**
      * @inheritdoc
      */
-    public function getId() // получаем id пользлватея
+    public function getId() 
     {
         return $this->id;
     }
@@ -67,11 +67,11 @@ class User extends ActiveRecord  implements \yii\web\IdentityInterface
      */
     public function validatePassword($password)
     {
-        //return $this->password === $password; // сравнивает пароль что ввл пользователь с тем что в бд
-        return \Yii::$app->security->validatePassword($password, $this->password); // сравнивает пароль что ввл пользователь с тем что в бд + хеширование
+       
+        return \Yii::$app->security->validatePassword($password, $this->password); 
     }
 
-    public function generateAuthKey(){ // генерирует случайную куку для записи ее в бд для повторной авторизации
+    public function generateAuthKey(){ 
         $this->auth_key = \Yii::$app->security->generateRandomString();
 
     }

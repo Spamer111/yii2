@@ -42,8 +42,8 @@ use yii\helpers\Url;
                     <div class="categories category-menu">
                         <h3>Категории</h3>
                             <ul class="catalog">
-                                <?php echo \app\components\MenuWidget::widget(['tpl' => 'menu']); //вывод виджета, tpl - параметр который определяет
-                                // какой вид виджета мы выводим?>
+                                <?php echo \app\components\MenuWidget::widget(['tpl' => 'menu']); 
+                                ?>
                             </ul>
                     </div>
                     <div class="buters-guide">
@@ -92,7 +92,7 @@ use yii\helpers\Url;
 
                             <div>
                                 <?php
-                                // подключаем виджет для пагинации
+                                
                                 echo \yii\widgets\LinkPager::widget([
                                     'pagination' => $pages,
                                 ]);?>

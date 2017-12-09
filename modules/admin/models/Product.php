@@ -28,7 +28,7 @@ class Product extends \yii\db\ActiveRecord
     public $image;
     public $gallery;
 
-    public function behaviors() // поведение для загрузки картинок
+    public function behaviors() 
     {
         return [
             'image' => [
@@ -59,8 +59,8 @@ class Product extends \yii\db\ActiveRecord
             [['content', 'hit', 'new', 'sale'], 'string'],
             [['price'], 'number'],
             [['name', 'keywords', 'description', 'img'], 'string', 'max' => 255],
-            [['image'], 'file', 'extensions' => 'png, jpg'], // правила для одной картинки
-            [['gallery'], 'file', 'extensions' => 'png, jpg', 'maxFiles' => 4], // правила для нескольких картинок
+            [['image'], 'file', 'extensions' => 'png, jpg'], 
+            [['gallery'], 'file', 'extensions' => 'png, jpg', 'maxFiles' => 4], 
         ];
     }
 
@@ -85,7 +85,7 @@ class Product extends \yii\db\ActiveRecord
         ];
     }
 
-    public function upload() // загрузка картинок
+    public function upload() 
     {
         if ($this->validate()) {
             $path = 'upload/store/' . $this->image->baseName . '.' . $this->image->extension;
@@ -99,14 +99,14 @@ class Product extends \yii\db\ActiveRecord
     }
 
 
-    public function uploadGallery() // загрузка галереи
+    public function uploadGallery() 
     {
-        if ($this->validate()) { //если пройдена валидация
+        if ($this->validate()) { 
             foreach ($this->gallery as $file){
-                $path = 'upload/store/' . $file->baseName . '.' . $file->extension; //путь к файлу
-                $file->saveAs($path); // сохраняем картинки
+                $path = 'upload/store/' . $file->baseName . '.' . $file->extension; 
+                $file->saveAs($path); 
                 $this->attachImage($path);
-                @unlink($path); // удаляем оригинальный файл
+                @unlink($path); 
             }
             return true;
         } else {

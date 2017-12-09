@@ -17,45 +17,37 @@ class CategoryController extends AppController{
     
     public function actionIndex(){
        // $hits = Product::find()->where(['hit' => '1'])->all();
-        $query = Product::find()->where(['hit' => '1']); // создаем обьект запроса
-        $pages = new Pagination(['totalCount' => $query->count(), 'pageSize' => 4, 'forcePageParam' => false, 'pageSizeParam' => false]); // создаем обьект класса Pagination и передаем ему параметры
-        // totalCount - общее кол-во записей которое будет вытащено запросом $query->count - считаем количество записей
-        // pageSize - количество записей которое выводиться на траницу (по умолчанию 20)
-        // forcePageParam - отвечает за ЧПУ ссылки в пагинации (нужно еще писать правила в urlmanager)
-        // pageSizeParam - отвечает за get параметр per-page в ссылке пагинации , если нужно его отключить ставит false
-        $hits = $query->offset($pages->offset)->limit($pages->limit)->all();//offset($pages->offset) - с какой записи начинать выборку, limit($pages->limit) - сколько записей брать
-        $this->setMeta('TEST-SHOPPER'); // метод класса AppController, устанавливаем загалосок страницы(TEST-SHOPPER), парметры ($keywords, $description) пусты
-        return $this->render('index', compact('hits','pages')); //главная страница
+        $query = Product::find()->where(['hit' => '1']); 
+        $pages = new Pagination(['totalCount' => $query->count(), 'pageSize' => 4, 'forcePageParam' => false, 'pageSizeParam' => false]); 
+               $hits = $query->offset($pages->offset)->limit($pages->limit)->all();
+        $this->setMeta('TEST-SHOPPER'); 
+        return $this->render('index', compact('hits','pages'));
     }
 
     public function actionView($id){
-       // $id = Yii::$app->request->get('id');
+     
 
         $category = Category::findOne($id);
         if(empty($category)){
             throw new HttpException(404, 'Такой категории нет');
         }
-        //$products = Product::find()->where(['category_id' => $id])->all();
-        //Пагинация - постраничная навигация
-        $query = Product::find()->where(['category_id' => $id]); // создаем обьект запроса
-        $pages = new Pagination(['totalCount' => $query->count(), 'pageSize' => 4, 'forcePageParam' => false, 'pageSizeParam' => false]); // создаем обьект класса Pagination и передаем ему параметры
-        // totalCount - общее кол-во записей которое будет вытащено запросом $query->count - считаем количество записей
-        // pageSize - количество записей которое выводиться на траницу (по умолчанию 20)
-        // forcePageParam - отвечает за ЧПУ ссылки в пагинации (нужно еще писать правила в urlmanager)
-        // pageSizeParam - отвечает за get параметр per-page в ссылке пагинации , если нужно его отключить ставит false
-        $products = $query->offset($pages->offset)->limit($pages->limit)->all();//offset($pages->offset) - с какой записи начинать выборку,
-        // limit($pages->limit) - сколько записей брать
+        
+        $query = Product::find()->where(['category_id' => $id]); 
+        $pages = new Pagination(['totalCount' => $query->count(), 'pageSize' => 4, 'forcePageParam' => false, 'pageSizeParam' => false]); 
+       
+        $products = $query->offset($pages->offset)->limit($pages->limit)->all();
+      
 
-        $this->setMeta('TEST-SHOPPER | '.$category->name, $category->keywords, $category->description);// метод класса AppController, устанавливаем загалосок страницы,
-        return $this->render('view', compact('products','pages','category')); //страница продуктов выбронной категории
+        $this->setMeta('TEST-SHOPPER | '.$category->name, $category->keywords, $category->description);
+        return $this->render('view', compact('products','pages','category')); 
     }
  
     public function actionSearch(){
         $q = trim(Yii::$app->request->get('q'));
-        $this->setMeta('TEST-SHOPPER | '.$q);// метод класса AppController, устанавливаем загалосок страницы,
+        $this->setMeta('TEST-SHOPPER | '.$q);
         if(!$q)
             return $this->render('search');
-        $query = Product::find()->where(['like','name' ,$q]); // создаем обьект запроса
+        $query = Product::find()->where(['like','name' ,$q]); 
         $pages = new Pagination(['totalCount' => $query->count(), 'pageSize' => 4, 'forcePageParam' => false, 'pageSizeParam' => false]);
         $products = $query->offset($pages->offset)->limit($pages->limit)->all();
         return $this->render('search', compact('products', 'pages', 'q'));

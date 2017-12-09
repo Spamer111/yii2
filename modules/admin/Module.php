@@ -28,11 +28,11 @@ class Module extends \yii\base\Module
 
         return [
             'access' => [
-                'class' => AccessControl::className(), // класс который используем для контроля доступа
-                'rules' => [ // правила
+                'class' => AccessControl::className(), 
+                'rules' => [ 
                     [
-                        'allow' => true, // разрешены все действия для аторизованный пользователь
-                        'roles' => ['@'] // роль показывает что это авторизованный пользователь
+                        'allow' => true, 
+                        'roles' => ['@'] 
                     ]
                 ]
             ]
